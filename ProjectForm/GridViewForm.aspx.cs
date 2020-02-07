@@ -24,12 +24,12 @@ namespace ProjectForm
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
             using (SqlCommand sqlCommand = new SqlCommand("spDisplayEmployee", sqlConnection))
             {
-                //sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
-                GridView1.DataSource = dataTable;
-                GridView1.DataBind();
+                GridViewId.DataSource = dataTable;
+                GridViewId.DataBind();
             }
         }
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -39,43 +39,44 @@ namespace ProjectForm
             using (SqlCommand sqlCommand = new SqlCommand("spDeleteEmployee", sqlConnection))
             {
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                int id = Convert.ToInt16(GridView1.DataKeys[e.RowIndex].Values["id"].ToString());
+                int id = Convert.ToInt16(GridViewId.DataKeys[e.RowIndex].Values["id"].ToString());
                 sqlConnection.Open();
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 int i = sqlCommand.ExecuteNonQuery();
-                GridView1.DataBind();
+                BindEmployeeDetails();
             }
         }
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            GridView1.EditIndex = e.NewEditIndex;
-            GridView1.DataBind();
+            GridViewId.EditIndex = e.NewEditIndex;
+            BindEmployeeDetails();
         }
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            GridView1.EditIndex = -1;
-            GridView1.DataBind();
+            GridViewId.EditIndex = -1;
+            BindEmployeeDetails();
         }
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             string connectionstring = ConfigurationManager.ConnectionStrings["SampleConnection"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
-            using (SqlCommand sqlCommand = new SqlCommand("sp_updatedata", sqlConnection))
+            using (SqlCommand sqlCommand = new SqlCommand("spUpdateEmployee", sqlConnection))
             {
-                TextBox firstName = GridView1.Rows[e.RowIndex].FindControl("txtfirstName") as TextBox;
-                TextBox lastName = GridView1.Rows[e.RowIndex].FindControl("txtlastName") as TextBox;
-                TextBox emailId = GridView1.Rows[e.RowIndex].FindControl("txtemailId") as TextBox;
-                TextBox gender = GridView1.Rows[e.RowIndex].FindControl("txtgender") as TextBox;
-                TextBox mobileNumber = GridView1.Rows[e.RowIndex].FindControl("txtmobileNumber") as TextBox;
-                TextBox dob = GridView1.Rows[e.RowIndex].FindControl("txtdob") as TextBox;
-                TextBox doj = GridView1.Rows[e.RowIndex].FindControl("txtdoj") as TextBox;
-                TextBox userName = GridView1.Rows[e.RowIndex].FindControl("txtuserName") as TextBox;
-                TextBox password = GridView1.Rows[e.RowIndex].FindControl("txtpassword") as TextBox;
-                TextBox designation = GridView1.Rows[e.RowIndex].FindControl("txtdesignation") as TextBox;
-                TextBox role = GridView1.Rows[e.RowIndex].FindControl("txtrole") as TextBox;
-                int id = Convert.ToInt16(GridView1.DataKeys[e.RowIndex].Values["@id"].ToString());
+
+                TextBox firstName = GridViewId.Rows[e.RowIndex].FindControl("txtfirstName") as TextBox;
+                TextBox lastName = GridViewId.Rows[e.RowIndex].FindControl("txtlastName") as TextBox;
+                TextBox emailId = GridViewId.Rows[e.RowIndex].FindControl("txtemailId") as TextBox;
+                TextBox gender = GridViewId.Rows[e.RowIndex].FindControl("txtgender") as TextBox;
+                TextBox mobileNumber = GridViewId.Rows[e.RowIndex].FindControl("txtmobileNumber") as TextBox;
+                TextBox dob = GridViewId.Rows[e.RowIndex].FindControl("txtdob") as TextBox;
+                TextBox doj = GridViewId.Rows[e.RowIndex].FindControl("txtdoj") as TextBox;
+                TextBox userName = GridViewId.Rows[e.RowIndex].FindControl("txtuserName") as TextBox;
+                TextBox password = GridViewId.Rows[e.RowIndex].FindControl("txtpassword") as TextBox;
+                TextBox designation = GridViewId.Rows[e.RowIndex].FindControl("txtdesignation") as TextBox;
+                TextBox role = GridViewId.Rows[e.RowIndex].FindControl("txtrole") as TextBox;
+                int id = Convert.ToInt16(GridViewId.DataKeys[e.RowIndex].Values["id"].ToString());
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.AddWithValue("@ firstName", firstName.Text);
+                sqlCommand.Parameters.AddWithValue("@firstName", firstName.Text);
                 sqlCommand.Parameters.AddWithValue("@lastName", lastName.Text);
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 sqlCommand.Parameters.AddWithValue("@emailId", emailId.Text);
@@ -89,14 +90,29 @@ namespace ProjectForm
                 sqlCommand.Parameters.AddWithValue("@id", role.Text);
                 sqlConnection.Open();
                 int i = sqlCommand.ExecuteNonQuery();
-                GridView1.EditIndex = -1;
-                GridView1.DataBind();
+                GridViewId.EditIndex = -1;
+                BindEmployeeDetails();
             }
         }
-
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void InsertClick(object sender, EventArgs e)
         {
-
+            TextBox firstName = GridViewId.FooterRow.FindControl("txtfirstName") as TextBox;
+            TextBox lastName = GridViewId.FooterRow.FindControl("txtlastName") as TextBox;            
+            TextBox emailId = GridViewId.FooterRow.FindControl("txtemailId") as TextBox;
+            TextBox gender = GridViewId.FooterRow.FindControl("txtgender") as TextBox;
+            TextBox mobileNumber = GridViewId.FooterRow.FindControl("txtmobileNumber") as TextBox;
+            TextBox dob = GridViewId.FooterRow.FindControl("txtdob") as TextBox;
+            TextBox doj = GridViewId.FooterRow.FindControl("txtdoj") as TextBox;
+            TextBox userName = GridViewId.FooterRow.FindControl("txtuserName") as TextBox;
+            TextBox password= GridViewId.FooterRow.FindControl("txtpassword") as TextBox;
+            TextBox designation = GridViewId.FooterRow.FindControl("txtdesigantion") as TextBox;
+            TextBox role = GridViewId.FooterRow.FindControl("txtpassword") as TextBox;           
+            UserRepositary userRepositary = new UserRepositary();           
+            Employee employee = new Employee(firstName.Text, lastName.Text,emailId.Text, gender.Text, mobileNumber.Text, Convert.ToDateTime(dob.Text), Convert.ToDateTime(doj.Text), userName.Text, password.Text, designation.Text, role.Text);
+           
+            userRepositary.AddEmployee(employee);
+            GridViewId.EditIndex = -1;
+            BindEmployeeDetails();
         }
     }
 }

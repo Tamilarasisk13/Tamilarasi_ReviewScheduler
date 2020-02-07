@@ -1,5 +1,4 @@
 ﻿using System;
-using EmployeeRepositary;
 namespace ProjectForm
 {
     public partial class AdminOperation : System.Web.UI.Page
@@ -22,9 +21,9 @@ namespace ProjectForm
                 role = "User";
             else
                 role ="Admin";
-            Repositary repositary = new Repositary();
-            Employee employee = new Employee(firstName.Text, lastName.Text, emailId.Text, gender,mobileNumber.Text, Convert.ToDateTime(txtdob.Text), Convert.ToDateTime(doj.Text), userName.Text, password.Text, designation.Text, role);
-            if (repositary.AddEmployee(employee) == true)
+            UserRepositary userRepositary = new UserRepositary();
+            Employee employee = new Employee(firstName.Text, lastName.Text,emailId.Text, gender,mobileNumber.Text, Convert.ToDateTime(txtdob.Text), Convert.ToDateTime(doj.Text), userName.Text, password.Text, designation.Text, role);
+            if (userRepositary.AddEmployee(employee) == true)
                 Response.Write("Employee is added Successfully");
             else
                 Response.Write("Employee is not added");

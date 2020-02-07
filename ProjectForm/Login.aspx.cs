@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Data;
-using EmployeeRepositary;
 using System.Data.SqlClient;
 
 
@@ -14,10 +13,8 @@ namespace ProjectForm
         {
 
         }
-
         protected void Button_Click(object sender, EventArgs e)
-        {
-            // SqlConnection sqlConnection = Connection.GetConnection();
+        {                                                                                                                      
             string connectionstring = ConfigurationManager.ConnectionStrings["SampleConnection"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
             SqlCommand sqlCommand = new SqlCommand("spLogin", sqlConnection);         
