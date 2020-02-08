@@ -1,15 +1,5 @@
 ﻿body {
-   
-}
-.MasterImage
-{
-  background-image:url('Lap Image.jpg'); 
-    background-repeat:no-repeat;
-    background-size:cover;
-}
-.LoginImage
-{
-  background-image:url('Lap Image.jpg'); 
+     background-image:url('Lap Image.jpg'); 
     background-repeat:no-repeat;
     background-size:cover;
 }

@@ -2,8 +2,6 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-
-
 namespace ProjectForm
 {
     public partial class Login : System.Web.UI.Page

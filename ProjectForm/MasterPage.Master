@@ -27,7 +27,8 @@
         </h1>
             <div>
               <asp:HyperLink ID="ContentpageHolderLogin" runat="server" NavigateUrl="~/Login.aspx" Text="Login" Style="text-align:center"></asp:HyperLink>
-                </div>
+                <%--<asp:HyperLink ID="gridViewForm" runat="server" NavigateUrl="~/GridViewForm.aspx" Text="GridView"></asp:HyperLink>    --%>
+            </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                   
             </asp:ContentPlaceHolder>

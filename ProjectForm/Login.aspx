@@ -11,21 +11,21 @@
             </h1>
         <table  style="text-align: center">
             <tr>
-                <td style="color:blue;">
+                <td style="color:blue">
                     Username
                 </td>
                 <td>
-                    <asp:TextBox ID="txtuserName" runat="server"/>
+                    <asp:TextBox ID="txtuserName"  Maxlength="30" runat="server"/>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidatorUserName" runat="server" ForeColor="Blue" ErrorMessage="Username is required" ControlToValidate="txtuserName">                     
                     </asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
-                 <td style="color:blue;">
+                 <td style="color:blue">
                     Password
                 </td>
                 <td>
-                    <asp:TextBox ID="txtpassword" runat="server" TextMode="Password"/>
+                    <asp:TextBox ID="txtpassword" runat="server"  Maxlength="15" TextMode="Password"/>
                      <asp:RequiredFieldValidator ID="RequiredFieldValidatorpassword" runat="server" ForeColor="Blue" ErrorMessage="password is required" ControlToValidate="txtpassword">                     
                     </asp:RequiredFieldValidator>
                       <asp:RegularExpressionValidator ID="revPassword" runat="server" Display="Dynamic"
