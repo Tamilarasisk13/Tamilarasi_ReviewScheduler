@@ -1,11 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ProjectForm.Login" %>
-
  <asp:Content ID="LoginHead" runat="server" ContentPlaceHolderID="head" >
          <link rel="stylesheet" type="text/css" href="StyleSheet.css" />
- </asp:Content >
-           
- <asp:Content ID="LoginBody" runat="server" ContentPlaceHolderID="ContentPlaceHolder1" class="LoginImage">
- 
+ </asp:Content >           
+ <asp:Content ID="LoginBody" runat="server" ContentPlaceHolderID="ContentPlaceHolder1" class="LoginImage"> 
      <h1 style="color:darkslategrey" >         
                <i>  Login page</i>        
             </h1>

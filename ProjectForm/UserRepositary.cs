@@ -9,7 +9,6 @@ namespace ProjectForm
         string connectionstring = ConfigurationManager.ConnectionStrings["SampleConnection"].ConnectionString;
         public bool AddEmployee(Employee employee)
         {
-          
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
             using (SqlCommand sqlCommand = new SqlCommand("spInsertEmployee", sqlConnection))
             {
@@ -35,12 +34,11 @@ namespace ProjectForm
         }
         public bool DeleteEmployee(int id)
         {
-          
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
             using (SqlCommand sqlCommand = new SqlCommand("spDeleteEmployee", sqlConnection))
             {
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-              
+
                 sqlConnection.Open();
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 int rows = sqlCommand.ExecuteNonQuery();
@@ -52,7 +50,6 @@ namespace ProjectForm
         }
         public bool DisplayEmployee(System.Web.UI.WebControls.GridView GridViewId)
         {
-
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
             using (SqlCommand sqlCommand = new SqlCommand("spDisplayEmployee", sqlConnection))
             {
@@ -67,17 +64,16 @@ namespace ProjectForm
         }
         public bool UpdateEmployee(Employee employee, int id)
         {
-
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
             using (SqlCommand sqlCommand = new SqlCommand("spUpdateEmployee", sqlConnection))
             {
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.AddWithValue("@firstName",employee.firstName);
+                sqlCommand.Parameters.AddWithValue("@firstName", employee.firstName);
                 sqlCommand.Parameters.AddWithValue("@lastName", employee.lastName);
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 sqlCommand.Parameters.AddWithValue("@emailId", employee.emailId);
                 sqlCommand.Parameters.AddWithValue("@gender", employee.gender);
-                sqlCommand.Parameters.AddWithValue("@mobileNumber",employee. mobileNumber);
+                sqlCommand.Parameters.AddWithValue("@mobileNumber", employee.mobileNumber);
                 sqlCommand.Parameters.AddWithValue("@dob", employee.dob);
                 sqlCommand.Parameters.AddWithValue("@doj", employee.doj);
                 sqlCommand.Parameters.AddWithValue("@userName", employee.userName);

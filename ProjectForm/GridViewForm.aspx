@@ -20,11 +20,7 @@
                                 <FooterTemplate>
                                     <asp:Button ID="InsertId" runat="server" Text="Insert" OnClick="InsertClick"></asp:Button>
                                 </FooterTemplate>
-
                             </asp:TemplateField>
-
-
-
                             <asp:TemplateField HeaderText="FirstName">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtfirstName" MaxLength="30" runat="server" Text='<%# Bind("Firstname") %>'></asp:TextBox>
@@ -36,8 +32,6 @@
                                     <asp:TextBox ID="firstNameId" runat="server"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField>
-
-
                             <asp:TemplateField HeaderText="LastName">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtlastName" MaxLength="30" runat="server" Text='<%# Bind("Lastname") %>'></asp:TextBox>
