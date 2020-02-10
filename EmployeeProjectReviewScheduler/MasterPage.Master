@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="EmployeeProjectReviewScheduler.MasterPage" %>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -12,7 +11,7 @@
 
     <form id="form1" runat="server">
         <div>   
-             <div align="right">
+             <div align="center">
               <asp:HyperLink ID="ContentpageHolderLogin" runat="server" NavigateUrl="~/Login.aspx" Text="Login" ></asp:HyperLink>
                  &nbsp
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/EmptyStartPage.aspx" Text="Home" ></asp:HyperLink>
@@ -29,10 +28,8 @@
           <h1 style="color:lightcoral" align="Right">
             <i>Happy Learning
             </i>
-        </h1>
-           
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                  
+        </h1>           
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">                 
             </asp:ContentPlaceHolder>
         </div>
     </form>

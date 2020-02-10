@@ -91,7 +91,9 @@ namespace EmployeeProjectReviewScheduler
                 string designation = (GridViewId.FooterRow.FindControl("designationId") as TextBox).Text;
                 string role = (GridViewId.FooterRow.FindControl("roleId") as TextBox).Text;
                 Employee employee = new Employee(firstName, lastName, emailId, gender, mobileNumber, Convert.ToDateTime(dob), Convert.ToDateTime(doj), userName, password, designation, role);
-                if (PassEmployeeDetails.AddEmployee(employee) > 0)
+                if (PassEmployeeDetails.AddEmployee(employee) == -1)
+                Response.Write("Employee is already exists");
+                else if (PassEmployeeDetails.AddEmployee(employee) > 0)
                 {
                     GridViewId.EditIndex = -1;
                     BindEmployeeDetails();

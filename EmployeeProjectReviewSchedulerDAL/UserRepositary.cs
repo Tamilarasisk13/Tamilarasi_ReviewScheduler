@@ -11,9 +11,9 @@ namespace EmployeeProjectReviewSchedulerDAL
         public static string Login(string userName, string password)
         {
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
-            //try
-            //{
-            using (SqlCommand sqlCommand = new SqlCommand("spLogin", sqlConnection))
+            try
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("spLogin", sqlConnection))
             {
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@userName", userName);
@@ -25,11 +25,11 @@ namespace EmployeeProjectReviewSchedulerDAL
                 string role = Convert.ToString(sqlCommand.Parameters["@role"].Value);
                 return role;
             }
-            //}
-            //catch(Exception)
-            //{
-            //    return "Error";
-            //}          
+        }
+            catch(Exception)
+            {
+                return "Error";
+            }          
         }
         public static int AddEmployee(Employee employee)
         {
@@ -61,7 +61,7 @@ namespace EmployeeProjectReviewSchedulerDAL
             }
             catch (Exception)
             {
-                return -1;
+                return -2;
             }
         }
         public static int DeleteEmployee(int id)

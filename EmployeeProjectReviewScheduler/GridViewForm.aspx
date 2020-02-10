@@ -66,6 +66,9 @@
                                 </ItemTemplate>
                                 <FooterTemplate>
                                     <asp:TextBox ID="emailIdId" runat="server"></asp:TextBox>
+                                                      <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmailId" runat="server" ControlToValidate="emailIdId"
+                            ErrorMessage="Please enter valid email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"> 
+                        </asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="emailIdId" ErrorMessage="EmailId is required"></asp:RequiredFieldValidator>
                                 </FooterTemplate>
                             </asp:TemplateField>
@@ -79,6 +82,7 @@
                                 </ItemTemplate>
                                 <FooterTemplate>
                                     <asp:TextBox ID="genderId" runat="server"></asp:TextBox>
+                             
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="genderId" ErrorMessage="Gender is required"></asp:RequiredFieldValidator>
                                 </FooterTemplate>
                             </asp:TemplateField>
@@ -92,6 +96,9 @@
                                 </ItemTemplate>
                                 <FooterTemplate>
                                     <asp:TextBox ID="mobileNumberId" runat="server"></asp:TextBox>
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                            ControlToValidate="mobileNumberId" ForeColor="Red" ErrorMessage="Please enter valid Mobile number!"
+                            ValidationExpression="^([6-9]{1})([0-9]{9})$"></asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="mobileNumberId" ErrorMessage="Mobile Number is required"></asp:RequiredFieldValidator>
                                 </FooterTemplate>
                             </asp:TemplateField>
@@ -135,17 +142,18 @@
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="userNameId" ErrorMessage="Username is required"></asp:RequiredFieldValidator>
                                 </FooterTemplate>
                             </asp:TemplateField>
-
-
                             <asp:TemplateField HeaderText="password">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtpassword" MaxLength="15" runat="server" Text='<%# Bind("Password") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtpassword" runat="server" Text='<%# Bind("Password") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblpassword" runat="server" Text='<%# Bind("Password") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
                                     <asp:TextBox ID="passwordId" runat="server"></asp:TextBox>
+                                     <asp:RegularExpressionValidator ID="revPassword"  MaxLength="15" runat="server" Display="Dynamic"
+                            ControlToValidate="passwordId" ForeColor="Red" ErrorMessage="Invalid password!"
+                            ValidationExpression="^((?=.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*|(?=.{8,}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!\u0022#$%&'()*+,./:;<=>?@[\]\^_`{|}~-]).*)"></asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="passwordId" ErrorMessage="Password is required"></asp:RequiredFieldValidator>
                                 </FooterTemplate>
                             </asp:TemplateField>
